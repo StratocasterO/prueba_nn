@@ -10,6 +10,9 @@
             width: 500px;
             margin: auto;
         }
+        #content{
+            margin: 50px;
+        }
     </style>
 </head>
 <body>
@@ -30,11 +33,17 @@
     const crawl = () => {
         texto = document.querySelector("input");
         let url = texto.value;
+
+        // sends the starting url to the server
         fetch(`http://localhost:3000/crawl?url=${url}`)
         .then(res => res.json())
         .then(res => {
+
+            // if the responses is an error, show it
             if(typeof res.content == "string"){
                 document.querySelector("#content").innerHTML = res.content;
+
+            // if not, displays the results of the crawl
             } else {
                 links = ""
                 res.content.forEach(element => {

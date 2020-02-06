@@ -7,15 +7,19 @@ router.get('/', function(req, res, next) {
 	res.render('index', { title: 'Express' });
 });
 
+// get request with the starting url to beging the crawl
 router.get('/crawl', function(req, res, next) {
 	res.setHeader('Access-Control-Allow-Origin', '*'); 
 	
+	// array for saving the links
 	links = [];
 	
 	crawl(req.query.url,1);
 	
 	function crawl(url, depth) {
 		request(url, (error, response, html) => {
+
+			// if the url responds, extracts the links
 			if (!error && response.statusCode == 200) {
 				const $ = cheerio.load(html);
 				
@@ -26,7 +30,8 @@ router.get('/crawl', function(req, res, next) {
 				});
 				
 				res.send({"content": links});
-				
+			
+			// if not, returns an error
 			} else if (error){
 				res.send({"content": "There was an error with the url"});
 			}
