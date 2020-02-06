@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Web Crawler Omar</title>
+    <style>
+        #form{
+            width: 500px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="form">
+        <p>
+            Insert here the URL you want to crawl:  
+            <input type="text" name="url" id="url" placeholder="http://www.whatever.com"><br>
+            How deep you wanna go?
+            <input type="number" name="deep" id="deep" min="1" value="1">
+            <input type="button" id="button" value="Start!">
+        </p>  
+    </div>   
+    <div id="content"></div>
+</body>
+</html>
+
+<script>
+    const crawl = () => {
+        texto = document.querySelector("input");
+        let url = texto.value;
+        fetch(`http://localhost:3000/crawl?url=${url}`)
+        .then(res => res.json())
+        .then(res => {
+            if(typeof res.content == "string"){
+                document.querySelector("#content").innerHTML = res.content;
+            } else {
+                links = ""
+                res.content.forEach(element => {
+                    links += element + "<br>"
+                });
+                document.querySelector("#content").innerHTML += links;
+            }
+        });
+    };
+    
+    document.getElementById("button").addEventListener("click", (e) => {
+        document.getElementById("content").innerHTML = "The web was crawled, here you have your results: <br><br>" 
+        crawl();
+    });
+</script>
