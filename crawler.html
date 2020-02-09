@@ -21,7 +21,7 @@
             Insert here the URL you want to crawl:  
             <input type="text" name="url" id="url" placeholder="http://www.whatever.com"><br>
             How deep you wanna go?
-            <input type="number" name="deep" id="deep" min="1" value="1">
+            <input type="number" name="depth" id="depth" min="1" value="1">
             <input type="button" id="button" value="Start!">
         </p>  
     </div>   
@@ -31,11 +31,13 @@
 
 <script>
     const crawl = () => {
-        texto = document.querySelector("input");
-        let url = texto.value;
+        text = document.querySelector("input#url");
+        num = document.querySelector("input#depth");
+        let url = text.value;
+        let depth = num.value;
 
         // sends the starting url to the server
-        fetch(`http://localhost:3000/crawl?url=${url}`)
+        fetch(`http://localhost:3000/crawl?url=${url}&depth=${depth}`)
         .then(res => res.json())
         .then(res => {
 
