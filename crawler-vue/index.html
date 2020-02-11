@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Web Crawler Omar</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="form">
+        <p>
+            Insert here the URL you want to crawl:  
+            <input type="text" name="url" id="url" placeholder="http://www.whatever.com"><br>
+            How deep you wanna go?
+            <input type="number" name="depth" id="depth" min="1" value="1">
+            <input type="button" id="button" value="Start!">
+        </p>  
+    </div>   
+    <div id="content"></div>
+</body>
+</html>
+
+<script src="script.js"></script>
