@@ -1,7 +1,22 @@
+body{
+    font-family: Roboto;
+    background-color: #EEEEEE;
+}
 #form{
+    background-color: white;
     width: 500px;
     margin: auto;
+    border: black 1px solid;
+    text-align: center;
+    line-height: 1.8em;
 }
 #content{
     margin: 50px;
+}
+header{
+    text-align: center;
+    margin-bottom: 3em;
+}
+h2{
+    font-weight: lighter;
 }

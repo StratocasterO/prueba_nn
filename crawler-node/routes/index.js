@@ -17,7 +17,7 @@ router.get('/crawl', function (req, res, next) {
 	crawl(req.query.url, req.query.depth);
 
 	function crawl(url, depth) {
-		iteration = 1;
+		iteration = 0;
 
 		crawled = [];
 
